@@ -1,0 +1,7 @@
+bs4==0.0.1
+certifi==2022.12.7
+fastapi==0.63.0
+Jinja2==3.0.3
+pymongo==4.3.3
+pytz==2023.2
+uvicorn==0.13.4
