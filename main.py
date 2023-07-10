@@ -28,13 +28,13 @@ levels = {
 @app.get('/')
 async def root(request: Request):
     #Get all records for History
-    recs = records.find()
-
+    recs = list(records.find())
+    recs_sorted = sorted(recs, key=lambda obj: datetime.datetime.fromisoformat(obj["date"]), reverse=True)
     #Get record if any record for today already exists
     today = datetime.datetime.now()
     today_rec = records.find_one({"date": {"$eq": str(today.date())}})
 
-    return templates.TemplateResponse('index.html', {'request': request, 'records': recs if records.count_documents({}) != 0 else None, 'today': None if today_rec==None else today_rec})
+    return templates.TemplateResponse('index.html', {'request': request, 'records': recs_sorted if len(recs) != 0 else None, 'today': today_rec})
 
 @app.post('/record')
 async def add_record(request: Request, level: str = Form(default='level')):
