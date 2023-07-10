@@ -5,3 +5,4 @@ Jinja2==3.0.3
 pymongo==4.3.3
 pytz==2023.2
 uvicorn==0.13.4
+python-multipart==0.0.6
